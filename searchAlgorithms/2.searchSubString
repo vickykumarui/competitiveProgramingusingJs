@@ -1,0 +1,39 @@
+function searchSubString(mainString, subString){
+    if(subString.length > mainString.length) return [];
+    let arrOfFoundIndex = [];
+    let subStringPointer = 0;
+    let mainStringPointer = 0;
+    let searchInProgress = -1;
+
+    while(mainStringPointer < mainString.length){
+
+        if(subString[subStringPointer] === mainString[mainStringPointer]){
+            if(subStringPointer === 0){
+                 searchInProgress = mainStringPointer;
+                 subStringPointer++;
+            } else if(subStringPointer === subString.length -1){
+                arrOfFoundIndex.push(searchInProgress);
+                searchInProgress = -1;
+                subStringPointer = 0;
+            } else{
+                subStringPointer++;
+            }
+             mainStringPointer++
+        } else{
+            if(searchInProgress > -1){
+                mainStringPointer = searchInProgress + 1;
+            } else{
+                 mainStringPointer++;
+            }
+             searchInProgress = -1;
+             subStringPointer = 0;
+        }
+
+      
+    }
+
+    return arrOfFoundIndex;
+}
+
+
+//searchSubString('abcxabcdabxabcdabcdabcy', 'abcdabcy')
