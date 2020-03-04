@@ -1,0 +1,23 @@
+// add number from 1 to number n 
+function add(n){
+    sum  = 0;
+    for(var i =1; i<=n;i++){
+        sum +=i;
+    }
+    return sum;
+}
+
+// another way of doing it is by using mathematical formula
+
+function add1(n){
+    return n*(n+1)/2
+}
+
+var t1 = performance.now()
+console.log(add(1000000000));
+var t2 = performance.now()
+console.log(`total time taken is ${(t2-t1)/1000} seconds`)
+var t3 = performance.now()
+console.log(add1(1000000000));
+var t4 = performance.now()
+console.log(`total time taken is ${(t4-t3)/1000} seconds`)
