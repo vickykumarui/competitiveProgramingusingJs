@@ -1,0 +1,16 @@
+function fib(n){
+    let fib = 1;
+    let prev = 0;
+  
+    function helper(n){
+            if(n === 1) return 1;
+            let prev1 = prev;
+            prev = fib;
+            fib = fib + prev1;
+            helper(n-1);
+    }
+
+    helper(n);
+
+    return fib;
+}

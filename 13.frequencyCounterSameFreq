@@ -1,0 +1,33 @@
+/*
+Write a function a called sameFrequency, gien two positive integers 
+out of two numbers they have same frequency of digits
+*/
+function sameFrequency(num1, num2){
+  // good luck. Add any arguments you deem necessary.
+  num1 = num1.toString();
+  num2 = num2.toString();
+  const num1FreqObj = {};
+  for(let i = 0; i < num1.length; i++){
+      if(num1FreqObj[num1[i]]){
+          num1FreqObj[num1[i]] += 1;
+      } else{
+          num1FreqObj[num1[i]] = 1
+      }
+  }
+  
+  for(let i = 0; i < num2.length; i++){
+      if(num1FreqObj[num2[i]]){
+          num1FreqObj[num2[i]] -= 1;
+      } else{
+          return false;
+      }
+  }
+  
+  for(let val in num1FreqObj){
+      if(num1FreqObj[val] !== 0){
+          return false;
+      }
+  }
+  
+  return true;
+}

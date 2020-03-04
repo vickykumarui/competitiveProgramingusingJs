@@ -1,0 +1,31 @@
+/* Write a function called isSubsequence whick takes in two strings
+ and checks whether the characters in the first string form a 
+ subsequence of the char in the second string 
+ In otherwords, the function should check whether the characters in
+ the first string appear somewhere in the second string, without
+ their order changine
+
+ */
+
+ function isSubsequence(str1, str2){
+     let pointer1 = 0;
+     let pointer2 = 0;
+     const len1 = str1.length;
+     const len2 = str2.length;
+
+     while(pointer2 < len2){
+
+         if(str1[pointer1] === str2[pointer2]){
+             pointer1++;
+         }
+
+         if(pointer1 === len1){
+             return true;
+         }
+             pointer2++;
+
+     }
+
+     return false;
+
+ }

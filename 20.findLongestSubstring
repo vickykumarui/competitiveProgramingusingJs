@@ -1,0 +1,26 @@
+function findLongestSubstring(mainStr){
+    let nonRepObj = {};
+    let finalLen = 0;
+    let currLen = 0;
+    let initPointer = 0;
+    let finalPointer = 0;
+
+    while(initPointer <= finalPointer && finalPointer < mainStr.length){
+        if((nonRepObj[mainStr[finalPointer]] || nonRepObj[mainStr[finalPointer]] === 0) && nonRepObj[mainStr[finalPointer]] >= initPointer){
+            currLen = finalPointer - initPointer;
+            finalLen = currLen > finalLen ? currLen : finalLen;
+            initPointer = nonRepObj[mainStr[finalPointer]] + 1;
+            nonRepObj[mainStr[finalPointer]] = finalPointer; 
+            finalPointer++;
+        } else{
+            nonRepObj[mainStr[finalPointer]] = finalPointer;
+            finalPointer++;
+         
+        }
+    }
+
+    currLen = finalPointer - initPointer;
+    finalLen = currLen > finalLen ? currLen : finalLen;
+
+    return finalLen;
+}

@@ -1,0 +1,22 @@
+// this function takes two parameter arr and avg and returns true
+// if any pair exist whose average is same as avg else returns false 
+function averagePair(arr, avg){
+    const len = arr.length;
+    let firstIndex = 0;
+    let lastIndex = len-1;
+    while(lastIndex >= firstIndex){
+
+        const newAvg= (arr[firstIndex] + arr[lastIndex])/2;
+
+        if(newAvg > avg){
+            lastIndex--;
+        } else if(newAvg < avg){
+            firstIndex++
+        } else{
+            return true;
+        }
+
+    }
+
+    return false;
+}

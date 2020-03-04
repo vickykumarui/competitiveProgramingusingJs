@@ -1,0 +1,21 @@
+function sumZeroQuick(arr){
+    let point1 = 0;
+    let pointLast = arr.length - 1;
+    let sum = arr[point1] + arr[pointLast];
+    let finalArr = [];
+
+    while(sum !== 0 && point1 < pointLast ){
+        if(sum > 0){
+            pointLast--;
+        } else if(sum < 0){
+            point1++;
+        }
+    sum = arr[point1] + arr[pointLast];
+    }
+    if(sum === 0){
+        finalArr.push(arr[point1],arr[pointLast] );
+
+    return finalArr;
+    }
+    
+}

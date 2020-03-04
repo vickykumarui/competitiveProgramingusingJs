@@ -1,0 +1,13 @@
+function capitalizeWords(arr){
+   let finalArr = [];
+
+   function helper(arr){
+       if(arr.length === 0) return;
+
+       finalArr.push(arr[0].toUpperCase());
+       return helper(arr.slice(1));
+   }
+   helper(arr);
+
+   return finalArr;
+}

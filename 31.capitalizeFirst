@@ -1,0 +1,16 @@
+function capitalizeFirst(arr){
+    let finalArr = [];
+
+    function helper(arr){
+        if (arr.length === 0) return;
+
+        const currVal = arr[0].replace(arr[0][0],arr[0][0].toUpperCase());
+        finalArr.push(currVal);
+        helper(arr.slice(1))
+    }
+    helper(arr);
+
+    return finalArr;
+}
+
+// ['apple','boy','cat']

@@ -1,0 +1,6 @@
+function reverse(str){
+    let lengthOfString = str.length;
+    if(lengthOfString === 0) return "";
+    
+    return str[lengthOfString-1] + reverse(str.slice(0,lengthOfString-1));
+}

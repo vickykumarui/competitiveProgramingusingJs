@@ -1,0 +1,31 @@
+function searchInSortedArr(arr, value){
+
+   return recurssiveSearch(arr, value, 0, arr.length -1)
+}
+
+function recurssiveSearch(origArr, value, startIndex, endIndex){
+
+     if(endIndex <= startIndex){
+        if(origArr[endIndex] === value){
+            return endIndex;
+        } else {
+            return -1;
+        }
+    }
+
+     const currIndex = parseInt((startIndex + endIndex)/2);
+
+   
+
+    if(origArr[currIndex] === value){
+        return currIndex;
+    } else if(origArr[currIndex] < value){
+        return(recurssiveSearch(origArr, value,currIndex+1 , endIndex));
+
+    } else{
+        return(recurssiveSearch(origArr, value, startIndex, currIndex-1));
+    }
+
+}
+
+

@@ -1,0 +1,17 @@
+function countUniqueValuesTwoCounter(arr){
+    let point1 = 0;
+    let point2 = 0;
+    
+    while(point2 < arr.length){
+    point2++
+    if(arr[point1] !== arr[point2]){
+        point1++
+        let flag = arr[point1];
+        arr[point1] = arr[point2]
+        arr[point2] = flag;
+    }    
+    
+    }
+
+    return point1++;
+}

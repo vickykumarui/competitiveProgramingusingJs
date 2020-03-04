@@ -1,0 +1,15 @@
+function areThrereDuplicate(){
+
+    var myObj = {};
+
+    for(let i = 0; i < arguments.length; i++){
+        if(myObj[arguments[i]]){
+            return true;
+        }else{
+            myObj[arguments[i]] = 1
+        }
+    }
+
+    return false;
+}
+

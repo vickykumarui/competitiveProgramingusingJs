@@ -1,0 +1,10 @@
+function pallindrome(str){
+    let lengthOfString = str.length;
+    if(lengthOfString <= 0) return true;
+    if(str[0] !== str[lengthOfString - 1]){
+        return false;
+    }
+   
+   return pallindrome(str.slice(1,lengthOfString- 1 ));
+
+}

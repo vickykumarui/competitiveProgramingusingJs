@@ -1,0 +1,19 @@
+function reverse(str){
+   
+   let reversedStr = "";
+
+   function helper(str){
+
+       if(str.length === 0) return '';
+
+       reversedStr += str[str.length - 1];
+
+       helper(str.slice(0, str.length -1));
+
+   }
+
+   helper(str);
+
+   return reversedStr;
+
+}

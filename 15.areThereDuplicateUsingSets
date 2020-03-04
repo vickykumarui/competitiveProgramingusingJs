@@ -1,0 +1,4 @@
+function areThereDuplicateUsingSets(){
+    // Set is data type which does not allow duplicates
+    return new Set(arguments).size != arguments.length
+}

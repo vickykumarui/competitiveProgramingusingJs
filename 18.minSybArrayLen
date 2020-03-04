@@ -1,0 +1,43 @@
+function minSubArrayLen(arr, minSum){
+    let minLen = 0;
+    let minLenFinal = 0;
+    let sum = 0;
+    for(let i = 0; i < arr.length; i++){
+        sum += arr[i]
+        if( sum >= minSum){
+            minLen = i + 1;
+            break;
+        }
+    }
+   
+    if(minSum === 0){
+        return minSum;
+    }
+     minLenFinal = minLen;
+
+    let initPointer = 0;
+    let finalPointer = minLen - 1;
+
+
+    while(initPointer < finalPointer && finalPointer <= arr.length){
+
+        if(sum >= minSum){
+            sum = sum - arr[initPointer];
+            initPointer++
+
+            minLen--;
+            if(minLen < minLenFinal && sum >= minSum){
+                minLenFinal = minLen;
+            }
+            
+
+
+        } else{
+            finalPointer++;
+            minLen++;
+            sum = sum + arr[finalPointer];
+        }
+    }
+
+    return minLenFinal;
+}

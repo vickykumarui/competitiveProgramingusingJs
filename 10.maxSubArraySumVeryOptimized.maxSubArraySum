@@ -1,0 +1,40 @@
+/*
+find maximum sum on n consecutive element
+maxSubArraySum([1,2,5,2,8,1,5],2)
+10
+maxSubArraySum([1,2,5,2,8,1,5],4)
+17
+maxSubArraySum([4,2,1,6],1)
+6
+maxSubArraySum([4,2,1,6,2],4)
+13
+maxSubArraySum([],4)
+
+solution
+calculate sum of first n element
+loop from n to remaining element
+every time add ith element in sum and subtract (n-i)th element update sum if greater
+*/
+
+function maxSubArraySum(arr, n){
+    if(arr.length === 0 || n > arr.length){
+        return 0;
+    }
+     let sum = 0;
+     let maxSum = 0;
+    for(let i = 0; i< n; i++){
+          sum += arr[i];
+         
+    }
+     maxSum = sum;
+   
+    for(let i = n; i< arr.length; i++){
+        sum = sum -  arr[i - n] + arr[i];        
+        if(sum > maxSum){
+            maxSum = sum;
+        } 
+
+    }
+
+    return maxSum;
+}

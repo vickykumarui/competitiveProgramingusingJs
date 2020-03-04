@@ -1,0 +1,21 @@
+// take a object as input and stringify all numbers present in object, Note: Modify same object
+function stringifyNumbers(obj){
+
+    function helper(obj){
+        for(let key in obj){
+            let currentObj = obj[key];
+            switch(typeof(currentObj)){
+                case "number":
+                        obj[key] = obj[key].toString();
+                        break;
+                case "object":
+                        helper(obj[key]);
+                        break;
+            }
+        }
+
+    }
+    helper(obj);
+
+    return obj;
+}

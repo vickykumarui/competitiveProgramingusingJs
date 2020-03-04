@@ -1,0 +1,21 @@
+function maxSubarraySum(arr, subSize){
+    if(subSize > arr.length){
+        return null;
+    }
+    let sum = 0;
+    let maxSum = 0;
+
+
+    for(let i = 0; i < subSize; i++){
+        sum += arr[i];
+    }
+
+    maxSum = sum > maxSum ? sum : maxSum;
+
+    for(let i = subSize; i < arr.length; i++){
+        sum = sum + arr[i] - arr[i - subSize];
+         maxSum = sum > maxSum ? sum : maxSum;
+    }
+
+    return maxSum;
+}

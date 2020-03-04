@@ -1,0 +1,20 @@
+function collectOddRecurssion(arr){
+    let finalArr = []
+   
+   function helper(arrInner){
+
+       if(arrInner.length === 0) return;
+
+       var lastItem = arrInner.pop();
+
+       if(lastItem % 2 !== 0){
+           finalArr.push(lastItem);
+       }
+       helper(arrInner);
+        
+   }
+
+   helper(arr);
+
+   return finalArr
+}

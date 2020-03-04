@@ -1,0 +1,28 @@
+function nestedEvenSum(obj){
+
+    let sum = 0;
+
+    function helper(obj){
+    
+     for(let keys in obj){
+        let currVal = obj[keys]
+
+        switch(typeof(currVal)){
+            case "object":
+                helper(currVal);
+                break;
+            case "number":
+                  if(currVal % 2 === 0) sum += currVal;
+                break;
+            case "string":
+                break;
+        }
+    }
+
+    }
+
+    helper(obj);
+
+    return sum;
+   
+}

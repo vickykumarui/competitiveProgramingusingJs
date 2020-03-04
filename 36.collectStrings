@@ -1,0 +1,20 @@
+function collectStrings(obj){
+    let finalArr = [];
+
+    function helper(obj){
+            
+            for(keys in obj){
+                const tyepObj = typeof(obj[keys]);
+                if(tyepObj === 'string'){
+                     finalArr.push(obj[keys]);
+
+                } else if(tyepObj === 'object'){
+                    helper(obj[keys])
+                }
+
+            }
+    }
+
+    helper(obj);
+    return finalArr;
+}

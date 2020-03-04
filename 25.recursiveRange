@@ -1,0 +1,17 @@
+function recursiveRange(n){
+    
+    let sum = 0;
+
+    function helper(n){
+        if(n === 0) return 0;
+
+        sum += n;
+
+        helper(n-1);
+
+    }
+
+    helper(n);
+
+    return sum;
+}
