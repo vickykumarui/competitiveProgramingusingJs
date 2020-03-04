@@ -1,0 +1,19 @@
+function binarySearch(arr, ele){
+    let firstPoint = 0;
+    let lastPoint = arr.length - 1
+    
+    
+    while(firstPoint < lastPoint){
+        const currIndex = parseInt((firstPoint+lastPoint)/2);
+        const currValue = arr[currIndex]; 
+        if(currValue < ele){
+           firstPoint = currIndex + 1; 
+        } else if(currValue > ele){
+            lastPoint = currIndex - 1;
+        } else{
+            return currIndex;
+        }
+    }
+
+    return -1;
+}

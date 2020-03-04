@@ -1,0 +1,11 @@
+function linearSearch(arr, value){
+    let foundAtIndex = -1;
+    for(let i =0; i< arr.length; i++){
+        if(arr[i] === value){
+            foundAtIndex = i;
+            break
+        }
+    }
+
+    return foundAtIndex;
+}
