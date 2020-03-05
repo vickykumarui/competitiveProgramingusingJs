@@ -1,0 +1,117 @@
+/*Source
+https://medium.com/@giri_sh/string-matching-kmp-algorithm-27c182efa387
+*/
+
+
+/*
+@Input substring 
+@Output Array which indicates position respective to each array if search breaks here
+
+Algo:
+maintain finalArr 
+push 0 into finalArr because if no match found for substring[0] next test will start at 0
+ iterate through given string 
+ in each iteration check breakpoint of prev value i.e finalArr[i-1]
+*/
+
+function getSuffixPrefixMatchArr(str){
+
+    let finalArr = [];
+    finalArr.push(0);// initial value always 0
+    const len = str.length;
+    for(let i = 1; i < len; i++){
+        if(str[i] === str[finalArr[i-1]]){
+   /* if current character is same as character present at index of previous value in 
+            finalArr means sub string continues
+            */
+            finalArr.push(finalArr[i-1] + 1);
+        } else{
+            finalArr.push(0)
+        }
+    }
+
+    return finalArr;
+}
+
+/*
+Example
+str = "abcdabcy"
+finalArr = []
+finalArr[0]
+i = 1
+str[1] ==== str[finalArr[1-1]] i.e "b" === str[0] i.e "b" === "a" -> false means 
+prefix not equal to suffix
+finalArr.push(0)
+
+i = 2
+finalArr[0,0]
+str[2] ==== str[finalArr[2-1]] i.e "c" === str[0] i.e "c" === "a" -> false means
+prefix not equal to suffix
+finalArr.push(0)
+
+i = 3
+finalArr[0,0,0]
+str[3] ==== str[finalArr[3-1]] i.e "d" === str[0] i.e "d" === "a" -> false means
+prefix not equal to suffix
+finalArr.push(0)
+
+i = 4
+finalArr[0,0,0,0]
+str[4] ==== str[finalArr[4-1]] i.e "a" === str[0] i.e "a" === "a" -> true means
+prefix equal to suffix
+finalArr.push(finalArr[i-1] + 1) i.e push one value greater that previous value if search
+breaks here next search will start from 1
+
+
+i = 5
+
+finalArr[0,0,0,0,1]
+str[5] ==== str[finalArr[5-1]] i.e "b" === str[1] i.e "b" === "b" -> true means
+prefix equal to suffix
+finalArr.push(finalArr[i-1] + 1) i.e push one value greater that previous value
+
+
+i = 6
+
+finalArr[0,0,0,0,1,2]
+str[6] ==== str[finalArr[6-1]] i.e "c" === str[2] i.e "c" === "c" -> true means
+prefix equal to suffix
+finalArr.push(finalArr[i-1] + 1) i.e push one value greater that previous value
+
+i = 7
+
+finalArr[0,0,0,0,1,2,3]
+str[7] ==== str[finalArr[7-1]] i.e "y" === str[3] i.e "y" === "d" -> false means
+prefix not equal to suffix
+finalArr.push(0)
+*/
+
+/*
+@Input 
+
+*/
+function searchSubStringKMPAlgorithm(str, subStr){
+    if(str.length < subStr.length) return [];
+    let suffixPrefixMatchArr = getSuffixPrefixMatchArr(subStr);
+    const len = str.length;
+    let allFoundIndex = [];
+    let subStrPointer = 0;
+    let currIndexFromWhereSearchStarted = 0
+    for(let i = 0; i < len; i++){
+        if(str[i] === subStr[subStrPointer]){
+            if(subStrPointer === subStr.length - 1){
+                allFoundIndex.push(currIndexFromWhereSearchStarted);
+                subStrPointer = 0;
+                currIndexFromWhereSearchStarted = i+1;
+            } else{
+            subStrPointer++;     
+            }
+           
+        } else{
+            currIndexFromWhereSearchStarted = i+1;
+            subStrPointer = suffixPrefixMatchArr[subStrPointer];
+        }
+    }
+
+    return allFoundIndex;
+}
