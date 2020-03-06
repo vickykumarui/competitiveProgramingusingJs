@@ -1,0 +1,21 @@
+/*
+Selection sort is improvement over bubble sort, in bubble sort we used to swap everytime we get lower value but
+here in selection sort we didn't swap we just maintain index of lowest value and update it when new lowest value is found and at end
+ swap smallest value with first element so that we get smallest element at begining
+*/
+
+function selectionSort(arr){
+    const len = arr.length;
+
+    for(let i =0; i< len; i++){
+        let minIndex = i
+        for(let j = i; j <len; j++){
+            if(arr[minIndex] > arr[j]){
+                minIndex = j;
+            }
+        }
+        [arr[i],arr[minIndex]] = [arr[minIndex], arr[i]];
+    }
+
+    return arr
+}
