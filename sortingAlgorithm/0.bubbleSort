@@ -1,0 +1,12 @@
+function bubbleSort(originalArr){
+    const len = originalArr.length;
+    for(let i = 0; i < len; i++){
+        for(let j = i+1; j < len; j++){
+            if(originalArr[i] > originalArr[j]){
+                [originalArr[i],originalArr[j]] = [originalArr[j],originalArr[i]];
+            }
+        }
+    }
+
+    return originalArr;
+}
