@@ -1,0 +1,17 @@
+function insertionSort(arr){
+    let len = arr.length;
+    for(let i =1; i < len; i++){
+        for(let j =i - 1; j >=0; j-- ){
+            let indexOfNumberToBeInserted = i;
+            if(arr[indexOfNumberToBeInserted] <  arr[j]){
+                indexOfNumberToBeInserted = j;
+                [arr[i],arr[j]] = [arr[j],arr[i]];
+            } else{
+                break;
+            }
+
+        }
+    }
+
+    return arr;
+}
