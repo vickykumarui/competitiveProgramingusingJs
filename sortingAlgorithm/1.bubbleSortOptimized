@@ -1,0 +1,22 @@
+/*
+We can optimize bubble sort, by checking if in last iteration there was no swap,
+means there will be no further swapping
+*/
+
+function bubbleSortOptimized(originalArr){
+  const len = originalArr.length;
+ 
+    for(let i = 0; i < len; i++){
+         let lastSwapFlag = false;
+        for(let j = i+1; j < len; j++){
+            
+            if(originalArr[i] > originalArr[j]){
+                [originalArr[i],originalArr[j]] = [originalArr[j],originalArr[i]];
+                lastSwapFlag = true;
+            }
+        }
+        if(!lastSwapFlag) break;
+    }
+
+    return originalArr;
+}
