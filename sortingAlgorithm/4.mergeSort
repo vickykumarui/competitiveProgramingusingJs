@@ -1,0 +1,35 @@
+function mergeSort(origArr){
+    if(origArr.length === 0 || origArr.length === 1) return origArr;
+
+    return merge(mergeSort(origArr.slice(0,parseInt(origArr.length/2))),mergeSort(origArr.slice(parseInt(origArr.length/2), origArr.length)));
+
+}
+
+
+
+function merge(arr1,arr2){
+    const len1 = arr1.length;
+    const len2 = arr2.length;
+    let finalArr = [];
+    let pointer1 =0;
+    let pointer2 = 0;
+    while(pointer1 < len1 && pointer2 < len2){
+        if(arr1[pointer1] < arr2[pointer2]){
+            finalArr.push(arr1[pointer1]);
+            pointer1++;
+        } else{
+            finalArr.push(arr2[pointer2]);
+            pointer2++;
+        }
+    }
+
+   for(let i = pointer1; i< len1; i++){
+       finalArr.push(arr1[i]);
+   }
+
+    for(let i = pointer2; i< len2; i++){
+       finalArr.push(arr2[i]);
+   }
+
+   return finalArr;
+}
