@@ -1,0 +1,32 @@
+function pivotHelper(arr, start = 0, end = arr.length -1 ){
+    const currEle = arr[start];
+    let numberOfElementLess = 0;
+    for(let i = start + 1; i<= end; i++){
+        if(arr[i] < currEle) {
+            numberOfElementLess++;
+            [arr[start +  numberOfElementLess], arr[i] ] = [arr[i], arr[start +  numberOfElementLess]];
+        }
+    }
+
+    [arr[start],arr[start + numberOfElementLess]] = [arr[start + numberOfElementLess],arr[start]];
+   
+    return start + numberOfElementLess;
+}
+
+function quickSort(arr, start = 0, end = arr.length -1){
+    
+    if(start < end ) {
+           
+    const pos = pivotHelper(arr,start,end);
+    quickSort(arr, start, pos -1);
+    quickSort(arr, pos + 1, end);
+
+    
+}
+    return arr
+    
+
+}
+
+//quickSort([11,50,60,5,1,23,24,29,35,45,2,3,])
+// [3, 5, 1, 2, 11, 23, 24, 29, 35, 45, 50, 60]
