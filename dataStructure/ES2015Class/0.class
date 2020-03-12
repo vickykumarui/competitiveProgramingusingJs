@@ -1,0 +1,35 @@
+class Student{
+    static NumberOfStudents = 0;
+    constructor(name,age, marks){
+        this.name = name;
+        this.age = age;
+        this.marks = marks;
+        Student.NumberOfStudents++;
+    }
+
+    
+
+    // instance methods - methods which are accessible to instance of class
+    getDetails(){
+        return `${this.name} is ${this.age} years old and has marks ${this.marks}`;
+    }
+
+    /*
+    The static keyword defines a static method for a class. Static methods are called without instantiating
+     their class and cannot be called through a class instance. Static methods are often used to create 
+     utility functions for an application.
+    */
+    static EnrollStudents(...students){
+        return 'Students enrolled';        
+    }
+    
+
+    static MarksDifference(student1,student2){
+        return student1.marks - student2.marks;
+    }
+}
+
+let vicky = new Student('vicky',28,90);
+let suraj = new Student('suraj',29, 90);
+console.log(suraj);
+console.log(vicky);
