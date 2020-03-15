@@ -1,0 +1,207 @@
+// understanding reference https://codeburst.io/explaining-value-vs-reference-in-javascript-647a975e12a0
+// Assinmnent to object is assigning new reference, change in one object changes other and agian reassignment new object will
+// not change prevItem object as new Assignment is againg assigning new reference
+class Node{
+    constructor(value){
+        this.val = value;
+        this.next = null;
+    }
+}
+
+
+class SinglyLinkedList{
+    constructor(){
+        this.head = null; // head is reference to first node
+        this.tail = null; // tail is reference to last node
+        this.length = 0
+    }
+
+    push(val){
+       let newNode = new Node(val);
+           if(!this.head){
+           this.head = newNode;
+           this.tail = newNode;
+       } else{
+           this.tail.next = newNode;
+           this.tail = newNode; // tail keeps reference to lastNode
+       }
+       this.length += 1;
+       return this;
+    }
+
+    traverse(){
+       let current = this.head;
+
+       while(!current){
+           console.log(current.val);
+           current = current.next;
+       }
+    }
+
+    pop(){
+       
+
+        if(!this.head){
+            return undefined
+        }
+        let prevItem = this.head;
+        let currItem = this.head;
+        if(this.length === 1){
+            this.head = null;
+            this.tail = null;
+            this.length = 0;
+            return currItem;
+        }
+        
+        while(currItem.next){
+            prevItem = currItem;
+           currItem = currItem.next;
+        }
+
+        this.tail = prevItem;
+        this.tail.next = null;
+
+        this.length -= 1;
+        return currItem;
+    }
+// removing from begining
+    shift(){
+        if(!this.head){
+            return
+        }
+        let currHead = this.head;
+        if(this.length === 1) {
+            this.head = null;
+            this.tail = null;
+            this.length = 1;
+            return currHead;
+        }
+        
+        this.head = currHead.next;
+        this.length -= 1; 
+
+        return currHead;
+    }
+// inserting value in the begining
+    unshift(val){
+        let newNode = new Node(val);
+        if(!this.head){
+            this.head = newNode;
+            this.tail = newNode;
+            this.length++;
+            return this
+        }
+        if(this.length === 1){
+        newNode.next = this.head;
+        this.tail = this.head;
+        this.head = newNode;
+        this.length++;
+        return this;
+        }
+        newNode.next = this.head;
+        this.head = newNode;
+        this.length++;
+        return this;
+    }
+
+    // get item at nth index
+    get(n){
+        if(n >= this.length || n < 0) return null;
+
+        let count = 0;
+
+        let current = this.head;
+
+        while(count != n ){
+            current = current.next;
+            count++
+        }
+
+        return current;
+
+    }
+
+    // set nth item value to val
+    set(n,val){
+//         if(n < 0 || n >= this.length){
+//             return null
+//         }
+//         let count = 0;
+//         let current = this.head;
+//         while(count < n){
+//             current = current.next;
+//             count++;
+//         }
+        let current = this.get(n);
+        if(current){
+             current.val = val;
+        }
+       
+
+        return this;
+    }
+
+    // insert adding a node to specific position n,
+
+    insert(n, val){
+        if(n < 0 || n >= this.length) return false;
+        if(n === 0 ) return this.unshift(n);
+        if(n === this.length - 1) return this.push(n);
+   let current = this.get(n);
+        if(current){
+            let newNode = new Node(val);
+            newNode.next = current.next;
+             current.next = newNode;
+             this.length++;
+
+        }
+    }
+
+    remove(n){
+         if(n < 0 || n >= this.length) return false;
+        if(n === 0 ) return this.shift(n);
+        if(n === this.length - 1) return this.pop(n);
+        let current = this.get(n-1);
+        current.next = current.next.next;
+        this.length--;
+
+    }
+
+    reverse(){
+        if(this.length <= 1) return this;
+        let tempNode = this.head;
+        this.head = this.tail;
+        this.tail = this.tempNode;
+        let prev = null; // inititaaly prev will be null as we need to start building from tail
+        let nextNode;
+
+        for(let i =0; i < this.length; i++){
+            nextNode = tempNode.next; // keep next node as backup which will become
+            tempNode.next = prev; // update tempNode to ponit its next to its prevItem
+            prev = tempNode; // now current tempNode becomes previous in next iteration
+            tempNode = nextNode; //current nextNode will be tempnode for next iteration
+        }
+        
+         return this;      
+
+
+    }
+    
+    traverse(){
+        let current = this.head;
+
+        while(current){
+            console.log(current.val);
+            current = current.next;
+        }
+    }
+}
+
+let myList = new SinglyLinkedList()
+
+myList.push('vicky');
+myList.push('vivek');
+myList.push('vikram');
+myList.push('Vikash');
+console.log(myList);
+myList.traverse();
