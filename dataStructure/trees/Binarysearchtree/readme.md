@@ -1,1 +1,1 @@
-Tree section
+Binary Search Tree section
