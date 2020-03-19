@@ -21,3 +21,10 @@ Edge: connection between one node to another
 Tree Application
 
 HTML Dom, Folders in Operating System, JSON is tree structure
+
+Commonly Used tree is binary tree
+
+Binary tree : It has restriction that each node can have maximum 2 children
+
+Binary Search Tree : It is special case of binary tree where restriction is that every node which is less than parent is always to left of it and node which is more than parent is to right 
+
