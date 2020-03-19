@@ -20,4 +20,4 @@ Edge: connection between one node to another
 
 Tree Application
 
-HTML Dom, Folders in Operating System
+HTML Dom, Folders in Operating System, JSON is tree structure
