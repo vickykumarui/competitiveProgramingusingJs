@@ -1,0 +1,93 @@
+class Node{
+    constructor(value){
+        this.value = value;
+        this.next = null;
+    }
+}
+
+class Stack{
+    constructor(){
+        this.first = null;
+        this.last = null;
+        this.size = 0;
+    }
+
+//     push(val){
+//         let newNode = new Node(val);
+//         if(this.size === 0 ){
+//             this.first = newNode;
+//             this.last = newNode;
+//         } else{
+//               this.last.next = newNode;
+//               this.last = newNode;
+//         }
+//         this.size++;
+//         return this.size;
+      
+//     }
+
+//     pop(){
+//         if(this.size === 0) return null;
+//         if(this.size === 1){
+//             this.first = null;
+//             this.last = null;
+//         } else{
+//             let currNode = this.first;
+//             let prevNode = this.first;
+//             while(currNode.next){
+//                 prevNode = currNode;
+//                 currNode = currNode.next;
+//             }
+//             prevNode.next = null;
+//             this.last = prevNode;
+//         }
+//         this.size--;
+//         return this.size;
+//     }
+
+/*
+Note: If we implement pop and push than problem is pop implementation is order on O(n)
+But we want pop in 0(1)
+To achieve this we will always inset and remove from begining and
+also our idea of stack LIFO will be preserved
+
+stack - 
+push(1)
+stack - 1
+push(2)
+ stack - 2 1
+ push(3)
+ stack - 3 2 1
+ pop()
+ stack - 2 1 Note 3 was inserted at last and recovered first "LIFO"
+*/
+
+        push(val){
+            let newNode = new Node(val);
+            if(this.size === 0){
+                this.first = newNode;
+                this.last = newNode;
+            } else{
+                 newNode.next = this.first;
+                 this.first = newNode;
+            }
+
+            this.size++;
+            return this.size;
+
+        }
+
+        pop(){
+            if(this.size ===0 ) return null;
+            if(this.size ===1){
+                this.first = null;
+                this.last = null;
+            } else{
+                this.first = this.first.next;
+            }
+
+            this.size--;
+
+            return this.size;
+        }
+}
