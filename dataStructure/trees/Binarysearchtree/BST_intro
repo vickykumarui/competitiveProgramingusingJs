@@ -1,0 +1,59 @@
+class Node{
+    constructor(value){
+        this.value = value;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+class BinarySearchTree{
+    constructor(){
+        this.root = null;
+    }
+
+    insert(value){
+        let newNode = new Node(value);
+        if(!this.root){
+            this.root = newNode;
+            return this;
+        }
+
+        let currNode = this.root;
+        let isTraverse = true;
+        while(isTraverse){
+            if(value < currNode.value ){
+                if(!currNode.left){
+                    currNode.left = newNode;
+                    isTraverse = false;
+                }
+                currNode = currNode.left;
+            } else{
+                 if(!currNode.right){
+                    currNode.right = newNode;
+                    isTraverse = false;
+                }
+                currNode = currNode.right;
+
+            }
+        }
+
+        return this
+    }
+
+    find(value){
+        if(!this.root) return -1;
+
+        let currNode = this.root;
+        while(currNode){
+            if(currNode.value === value){
+                return true;
+            } else if(value < currNode.value){
+                currNode = currNode.left;
+            } else{
+                currNode = currNode.right;
+            }
+        }
+
+        return false;
+    }
+}
