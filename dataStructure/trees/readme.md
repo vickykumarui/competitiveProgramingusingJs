@@ -28,3 +28,17 @@ Binary tree : It has restriction that each node can have maximum 2 children
 
 Binary Search Tree : It is special case of binary tree where restriction is that every node which is less than parent is always to left of it and node which is more than parent is to right 
 
+Tree traversal
+
+1. Breadth first search(BFS)
+
+---------->10
+ ------>6---->15
+ --->3   8       20
+ 
+ BFS - [10 6 15 3 8 20]
+ 
+ 2. Depth first search(DFS)
+    a. In order (root lies in middle)
+    b. Pre order (root lies in pre)
+    c. Post order (root lies at end)
