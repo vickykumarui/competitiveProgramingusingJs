@@ -42,3 +42,12 @@ Tree traversal
     a. In order (root lies in middle)
     b. Pre order (root lies in pre)
     c. Post order (root lies at end)
+    
+  Which one to choose BFS or DFS
+  
+  Time complexity of DFS and BFS are same as we visit every node once 
+  
+  Difference is in space complexity.
+  
+  In  BFS we keep in queue all the node at particular level and in DFS we recursivelly  call function till we reach end of node(depth) hence keeping reference of each node in dapth. So if width of tree is more use DFS and if height is more use BFS
+  
