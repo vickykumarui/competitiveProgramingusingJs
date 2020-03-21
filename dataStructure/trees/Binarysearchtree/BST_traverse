@@ -1,0 +1,155 @@
+class Node{
+    constructor(value){
+        this.value = value;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+class BinarySearchTree{
+    constructor(){
+        this.root = null;
+    }
+
+    insert(value){
+        let newNode = new Node(value);
+        if(!this.root){
+            this.root = newNode;
+            return this;
+        }
+
+        let currNode = this.root;
+        let isTraverse = true;
+        while(isTraverse){
+            if(value < currNode.value ){
+                if(!currNode.left){
+                    currNode.left = newNode;
+                    isTraverse = false;
+                }
+                currNode = currNode.left;
+            } else{
+                 if(!currNode.right){
+                    currNode.right = newNode;
+                    isTraverse = false;
+                }
+                currNode = currNode.right;
+
+            }
+        }
+
+        return this
+    }
+
+    find(value){
+        if(!this.root) return -1;
+
+        let currNode = this.root;
+        while(currNode){
+            if(currNode.value === value){
+                return true;
+            } else if(value < currNode.value){
+                currNode = currNode.left;
+            } else{
+                currNode = currNode.right;
+            }
+        }
+
+        return false;
+    }
+
+/*
+maintain a queue(ToDoQueue) in which store the node one bye one
+maintain a final list(finalList) to store all the values
+in each iteration take first Node from list and push value of node into finalList and if Node containg left and right push them into 
+ToDoQueue
+iterate till ToDoQueue is empty
+*/
+    BFStraverse(){
+
+        let ToDoQueue = [];
+        let finalList = [];
+        ToDoQueue.push(this.root);
+
+        while(ToDoQueue.length > 0){            
+            let currNode = ToDoQueue.shift();
+            finalList.push(currNode.value);
+
+            if(currNode.left) ToDoQueue.push(currNode.left);
+            if(currNode.right) ToDoQueue.push(currNode.right);
+        }
+
+        return finalList;
+        
+    }
+
+    DFSPreOrder(){
+        let NodeVisited = [];
+        let currentNode = this.root;
+
+        function helper(currNode) {
+            NodeVisited.push(currNode.value); 
+            if(currNode.left) helper(currNode.left);
+            if(currNode.right) helper(currNode.right);
+                
+        }
+
+        helper(currentNode);
+
+        return NodeVisited;
+    }
+
+       DFSPostOrder(){
+        let NodeVisited = [];
+        let currentNode = this.root;
+
+        function helper(currNode) {
+           
+            if(currNode.left) helper(currNode.left);
+            if(currNode.right) helper(currNode.right);
+             NodeVisited.push(currNode.value); 
+                
+        }
+
+        helper(currentNode);
+
+        return NodeVisited;
+    }
+
+       DFSInOrder(){
+        let NodeVisited = [];
+        let currentNode = this.root;
+
+        function helper(currNode) {
+            if(currNode.left) helper(currNode.left);
+            NodeVisited.push(currNode.value); 
+            if(currNode.right) helper(currNode.right);
+                
+        }
+
+        helper(currentNode);
+
+        return NodeVisited;
+    }
+}
+let Mybst = new BinarySearchTree();
+
+Mybst.insert(10)
+Mybst.insert(6)
+Mybst.insert(15)
+Mybst.insert(3)
+Mybst.insert(8)
+Mybst.insert(20)
+// Mybst.insert(50)
+// Mybst.insert(60)
+// Mybst.insert(55)
+// Mybst.insert(65)
+// Mybst.insert(70)
+// Mybst.insert(75)
+// Mybst.insert(80)
+// Mybst.insert(45)
+// Mybst.insert(40)
+// Mybst.insert(35)
+// Mybst.insert(25)
+// Mybst.insert(20)
+// Mybst.insert(15)
+// Mybst.insert(10)
