@@ -1,0 +1,109 @@
+class BinaryHeap{
+    constructor(){
+        this.values = [];
+    }
+
+    insert(val){
+
+        this.values.push(val); // push the value at end of list
+        let lengthOfBinaryHeap = this.values.length;
+        if(lengthOfBinaryHeap === 1) return this.values; // if it was first element we are done
+
+        // bubble the new element to its correct position
+        let currIndex = lengthOfBinaryHeap - 1;
+        
+        let swapNext = true;
+        while(swapNext){
+            let parentIndex = Math.floor((currIndex - 1)/2);
+
+        if(val > this.values[parentIndex]){
+     [this.values[currIndex],this.values[parentIndex]] =
+     [this.values[parentIndex],this.values[currIndex]];
+                 currIndex = parentIndex;
+
+                 if(currIndex === 0) swapNext = false;
+            } else{
+                swapNext = false;
+            }
+        }
+
+        return this.values;
+    }
+
+    extractMax(){
+         if(this.values.length === 0) return false;
+        if(this.values.length === 1) return this.values.pop();
+
+       let currValue = this.values[0]; // final value to be returned as largest value is first one
+        /* 
+        now goal is to maintain two properties of heap
+        1. heap should be compact - exchange root with last element
+        2. maintain property that root is always greater than children
+        */
+        let len = this.values.length;
+        [this.values[0],this.values[len - 1]] = [this.values[len - 1],this.values[0]];
+        this.values.pop();
+        
+        this.snikDown(); // sneak down new root to its correct position
+
+         return currValue;
+    }
+
+    snikDown(){
+       
+
+        /*
+        2. maintain property that root is always greater than children
+        */
+        let currIndex = 0;
+        let len = this.values.length;
+        while(true){
+            let leftChildIndex = 2*currIndex + 1;
+            let rightChildIndex = 2*currIndex + 2;
+             let swapIndex = null;
+
+            if(leftChildIndex < len - 1 && this.values[currIndex] < this.values[leftChildIndex]){
+                    swapIndex = leftChildIndex;
+                 // currIndex = leftChildIndex;
+                
+            }
+           if(rightChildIndex < len - 1 && this.values[currIndex] < this.values[rightChildIndex])
+             {
+              
+              if(!swapIndex){
+                  // if leftChild is small then swipe right
+                  swapIndex = rightChildIndex;
+              } else{
+                  // if both left and right are eligible for swipe swipe with larger one
+                  swapIndex = this.values[rightChildIndex] > this.values[leftChildIndex]
+                   ? rightChildIndex : leftChildIndex;
+              }
+                 
+
+            }
+
+            if(!swapIndex){
+                break;
+            } else{
+                [this.values[currIndex],this.values[swapIndex]] =
+                 [this.values[swapIndex],this.values[currIndex]];
+
+                 currIndex = swapIndex;
+            }
+
+            
+        }
+
+       
+
+    }
+}
+
+let MyBH = new BinaryHeap();
+MyBH.insert(20);
+MyBH.insert(25);
+MyBH.insert(30);
+MyBH.insert(3);
+MyBH.insert(15);
+MyBH.insert(21);
+MyBH.insert(26);
