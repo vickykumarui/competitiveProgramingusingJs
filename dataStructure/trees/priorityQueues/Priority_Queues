@@ -1,0 +1,114 @@
+class Node{
+    constructor(value, priority){
+        this.value = value;
+        this.priority = priority;
+    }
+}
+
+class PriorityQueues{
+    constructor(){
+        this.values = [];
+    }
+
+    enqueue(val, priority){
+        let newNode = new Node(val, priority);
+
+        this.values.push(newNode);
+        this.bubbleUp();
+    }
+
+    bubbleUp(){
+            let len = this.values.length;
+            if(len === 1) return;
+    
+            let currentIndex = len-1;
+           
+            let swapNext = true;
+            while(swapNext){
+                 let parentIndex = Math.floor((currentIndex - 1)/2);
+
+      /* if current value <(condition for minBinaryheap) parentvalue swap it with parent
+       and update currentIndex as parentIndex
+       after updating currentIndex if it is 0 means our value came at root -> stop iteration
+       if not greater than parent stop iteration 
+       */
+
+                  if(this.values[currentIndex].priority < this.values[parentIndex].priority){
+                     [this.values[currentIndex],this.values[parentIndex]]  = 
+                     [this.values[parentIndex],this.values[currentIndex]];  
+
+                     currentIndex = parentIndex;
+                     if(currentIndex === 0) swapNext = false;
+                  } else{
+                      swapNext = false;
+                  }
+            }    
+    }
+
+    dequeue(){
+        let firstVal = this.values[0];
+
+        // interchange first and last value and pop out
+        [this.values[0], this.values[this.values.length - 1]] = 
+         [this.values[this.values.length - 1], this.values[0]];
+
+         this.values.pop();
+        
+        // now in first position we have random element need to bring highest priority element
+
+        this.sinkDown()
+
+        return firstVal;
+    }
+
+    sinkDown(){
+        let len = this.values.length
+        if(len === 1) return;
+
+        let currIdx = 0;
+
+        while(true){
+            let leftChilfIdx = currIdx*2 + 1;
+            let rightChildIdx = currIdx*2 + 2;
+            let swapIndex = null;
+            if(leftChilfIdx < len && 
+            this.values[currIdx].priority > this.values[leftChilfIdx].priority ){
+                    swapIndex = leftChilfIdx;
+            }
+
+            if(rightChildIdx < len && 
+            this.values[currIdx].priority > this.values[rightChildIdx].priority ){
+
+                if(!swapIndex){
+                    swapIndex = rightChildIdx;
+                } else{
+                swapIndex = this.values[rightChildIdx].priority <
+                 this.values[leftChilfIdx].priority ? rightChildIdx : leftChilfIdx;
+                }
+
+            }
+
+    if(!swapIndex){
+        break;
+    } else{
+        [this.values[swapIndex], this.values[currIdx]] = 
+         [this.values[currIdx], this.values[swapIndex]];
+
+         currIdx = swapIndex;
+    }
+
+    
+
+        }
+    }
+}
+
+let prioQueue = new PriorityQueues();
+
+prioQueue.enqueue(3, 4);
+prioQueue.enqueue(20, 1);
+prioQueue.enqueue(15, 5);
+prioQueue.enqueue(21, 6);
+prioQueue.enqueue(25, 2);
+prioQueue.enqueue(26, 7);
+prioQueue.enqueue(30, 3);
