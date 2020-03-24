@@ -19,5 +19,9 @@ Weighted graph -  when there is weight assigned to graph
 
 Storing graphs - There are two common ways to store graphs
 
-1. Adjacency Matrics
+1. Adjacency Matrics -  takes more space, Slower to iterate over all edges, Faster to look up specific edge
+
+
+Example: We maintain a 2D array M*M where we have each value 
 2. Adjacency List
+We keep it in object(hash) Can take less space, Faster to iterate over all edges, can be slower to look up specific edge
