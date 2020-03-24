@@ -10,3 +10,9 @@ Social networks
 Recommendation like in netflix people also watch in amazon - Frequently bought with
 
 Tree is also a graph with restriction that there is oly one path to reach from any vertices to another
+
+Types of graph:
+
+Undirected graph - There is no direction on edges(connection) between two node/vertices
+Directed graph - There is direction on edges(connection)
+Weighted graph -  when there is weight assigned to graph
