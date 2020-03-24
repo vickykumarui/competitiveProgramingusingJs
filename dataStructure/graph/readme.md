@@ -16,3 +16,8 @@ Types of graph:
 Undirected graph - There is no direction on edges(connection) between two node/vertices
 Directed graph - There is direction on edges(connection)
 Weighted graph -  when there is weight assigned to graph
+
+Storing graphs - There are two common ways to store graphs
+
+1. Adjacency Matrics
+2. Adjacency List
