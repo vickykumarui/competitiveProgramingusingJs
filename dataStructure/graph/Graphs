@@ -1,0 +1,56 @@
+class Graph{
+    constructor(){
+        this.adjacency = {}
+    }
+
+    addVertex(vertex){
+        // vertex is each node there is key for each vertex
+       if(!this.adjacency[vertex]) this.adjacency[vertex] = [];
+    }
+
+    addEdge(vertex1, vertex2){
+        // edge is connection between two vertices
+
+        this.adjacency[vertex1].push(vertex2);
+         this.adjacency[vertex2].push(vertex1);
+    }
+
+    removeEdge(vertex1, vertex2){
+       
+       // remove vertex1 from vertex2 and vise versa
+//        const indx1 =  this.adjacency[vertex2].indexOf(vertex1);
+//        this.adjacency[vertex2].splice(indx1, 1);
+//         const indx2 =  this.adjacency[vertex1].indexOf(vertex2);
+//        this.adjacency[vertex1].splice(indx2, 1);
+
+/* other thought is there could be more than two connection so
+ we need to remove all vertex1 from vertex2
+ */
+        this.adjacency[vertex2] = this.adjacency[vertex2].filter( (v1) =>  v1!==vertex1 );
+         this.adjacency[vertex1] = this.adjacency[vertex1].filter( (v2) =>  v2!==vertex2 );
+    }
+
+    removeVertex(vertex){
+        
+        let neighours = this.adjacency[vertex];
+        for(let neighour in neighours){
+            // const indx1 =  this.adjacency[neighours[neighour]].indexOf(vertex);
+           // this.adjacency[neighours[neighour]].splice(indx1, 1);
+
+           this.removeEdge(vertex,neighours[neighour]);
+        }
+
+
+        delete this.adjacency[vertex]; 
+
+    }
+}
+
+
+let MyGraph = new Graph();
+MyGraph.addVertex('sanfransisco');
+MyGraph.addVertex('kolkata');
+MyGraph.addVertex('mumbai');
+MyGraph.addVertex('delhi');
+MyGraph.addEdge('delhi','mumbai');
+MyGraph.addEdge('delhi','kolkata');
