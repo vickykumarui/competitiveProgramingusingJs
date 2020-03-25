@@ -1,0 +1,144 @@
+class Graph{
+    constructor(){
+        this.adjacency = {}
+    }
+
+    addVertex(vertex){
+        // vertex is each node there is key for each vertex
+       if(!this.adjacency[vertex]) this.adjacency[vertex] = [];
+    }
+
+    addEdge(vertex1, vertex2){
+        // edge is connection between two vertices
+
+        this.adjacency[vertex1].push(vertex2);
+         this.adjacency[vertex2].push(vertex1);
+    }
+
+    removeEdge(vertex1, vertex2){
+       
+       // remove vertex1 from vertex2 and vise versa
+//        const indx1 =  this.adjacency[vertex2].indexOf(vertex1);
+//        this.adjacency[vertex2].splice(indx1, 1);
+//         const indx2 =  this.adjacency[vertex1].indexOf(vertex2);
+//        this.adjacency[vertex1].splice(indx2, 1);
+
+/* other thought is there could be more than two connection so
+ we need to remove all vertex1 from vertex2
+ */
+        this.adjacency[vertex2] = this.adjacency[vertex2].filter( (v1) =>  v1!==vertex1 );
+         this.adjacency[vertex1] = this.adjacency[vertex1].filter( (v2) =>  v2!==vertex2 );
+    }
+
+    removeVertex(vertex){
+        
+        let neighours = this.adjacency[vertex];
+        for(let neighour in neighours){
+            // const indx1 =  this.adjacency[neighours[neighour]].indexOf(vertex);
+           // this.adjacency[neighours[neighour]].splice(indx1, 1);
+
+           this.removeEdge(vertex,neighours[neighour]);
+        }
+
+
+        delete this.adjacency[vertex]; 
+
+    }
+
+/*
+@input first node from where to start,
+maintain a object traversedVertices to store all visited vertex
+once we visit a vertex loop throught all its children(if children is not visited) and recusively call traverse() with children
+
+*/
+    DFS_recurssion(start){
+        let currentVertex = start || Object.keys(this.adjacency)[0];
+        
+        let traversedVertices = {};
+        let adjacencyLocal = this.adjacency;
+        function traverse (currentVertex) {
+            if(!currentVertex) return;
+            traversedVertices[currentVertex] = true;
+
+            let childArray = adjacencyLocal[currentVertex];
+            for(let i = 0; i< childArray.length; i++)
+            if( !traversedVertices[childArray[i]] ){
+                return traverse(childArray[i]);
+            }
+               
+        }
+
+        traverse(currentVertex);
+
+        return traversedVertices;
+    }
+
+    DFS_iteretive(start){
+        let currentVertex = start || Object.keys(this.adjacency)[0];
+        if(!currentVertex) return null;
+
+        let dfsStack = [];
+        dfsStack.push(currentVertex);
+        let traversedVertices = {};
+
+        while(dfsStack.length){
+            let currentVertex = dfsStack.pop();
+            traversedVertices[currentVertex] = true;
+            
+            let childArray = this.adjacency[currentVertex];
+            for(let i = 0; i< childArray.length; i++){
+                if(!traversedVertices[childArray[i]]){
+                    dfsStack.push(childArray[i]);
+                }
+            }
+        }
+        return traversedVertices;
+    }
+
+/*
+Same as DFS_iteretive only only diference is it will use queue as our goal to use all chld first than move to child of child 
+this make sense of using Queue
+*/
+       BFS_iteretive(start){
+        let currentVertex = start || Object.keys(this.adjacency)[0];
+        if(!currentVertex) return null;
+
+        let bfsQueue = [];
+        bfsQueue.push(currentVertex);
+        let traversedVertices = {};
+
+        while(bfsQueue.length){
+            let currentVertex = bfsQueue.shift();
+            traversedVertices[currentVertex] = true;
+            
+            let childArray = this.adjacency[currentVertex];
+            for(let i = 0; i< childArray.length; i++){
+                if(!traversedVertices[childArray[i]]){
+                    bfsQueue.push(childArray[i]);
+                }
+            }
+        }
+        return traversedVertices;
+    }
+
+
+}
+
+
+let MyGraph = new Graph();
+MyGraph.addVertex('A');
+MyGraph.addVertex('B');
+MyGraph.addVertex('C');
+MyGraph.addVertex('D');
+MyGraph.addVertex('E');
+MyGraph.addVertex('F');
+
+MyGraph.addEdge('A','B');
+MyGraph.addEdge('A','C');
+MyGraph.addEdge('B','D');
+MyGraph.addEdge('C','E');
+MyGraph.addEdge('D','E');
+MyGraph.addEdge('D','F');
+MyGraph.addEdge('E','F');
+
+MyGraph.DFS_recurssion('A')
