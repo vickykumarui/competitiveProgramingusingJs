@@ -1,0 +1,23 @@
+class WeightedGraph{
+    constructor(){
+        this.adjacencylist = {};
+    }
+
+    addVertex(vertex){
+        if(!this.adjacencylist[vertex]) this.adjacencylist[vertex] = [];
+    }
+
+    addedge(vertex1, vertex2, weight){
+        this.adjacencylist[vertex1].push({node: vertex2, weight: weight});
+         this.adjacencylist[vertex2].push({node: vertex1, weight });
+    }
+}
+
+let WTGraph = new WeightedGraph();
+
+WTGraph.addVertex('A');
+WTGraph.addVertex('B');
+WTGraph.addVertex('C');
+WTGraph.addedge('A','B', 9);
+WTGraph.addedge('A','C', 5);
+WTGraph.addedge('B','C', 7);
