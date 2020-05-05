@@ -1,0 +1,12 @@
+function finMemoizedSolution(n){
+    let memo = [0,1,1];
+
+    function fibnnoci(n){
+        if(memo[n]) return memo[n];
+
+        memo[n] = fibnnoci(n -1 ) + fibnnoci(n - 2);
+        return memo[n];
+    }
+
+    return fibnnoci(n);
+}

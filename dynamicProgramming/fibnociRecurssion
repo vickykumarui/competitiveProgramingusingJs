@@ -1,0 +1,14 @@
+function fibnociRecurssion(n){
+    
+    if(n <= 2) return 1;
+
+    return (fibnocci(n-1) + fibnocci(n-2));
+
+}
+
+/*
+This solution has poor performance O(2^n)
+Need to be solved
+
+*/
+

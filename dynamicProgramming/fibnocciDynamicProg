@@ -1,0 +1,13 @@
+function fibnocciDyamicProgramming(n){
+    if(n <= 2) return 1;
+    let currentFib = 1
+    let prevFibVal = 1;
+    for(let i = 2; i < n; i++){
+        const temp= currentFib;
+        currentFib = currentFib + prevFibVal;
+        prevFibVal = temp;
+        
+    }
+
+    return currentFib;
+}
