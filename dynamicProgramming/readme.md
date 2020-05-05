@@ -15,3 +15,5 @@ Example febnocci series
   In above diagram we can see that fib(3) is getting used  Hence reusable subproblem
   
   Optimal substructure - If a problem solution can be constructed from optimal solution of it subproblems
+  
+  Whole idea of dynamic programming is to store the previous result if required to be used in future to avoid expensive calculation being done again
