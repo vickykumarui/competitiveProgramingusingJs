@@ -19,3 +19,5 @@ Example febnocci series
   Whole idea of dynamic programming is to store the previous result if required to be used in future to avoid expensive calculation being done again
 
 Memoization - Storing the result of expensive function call and returning the cached result when same input occurs
+
+Tabuation - Storing result in some sort of tabe usually array
