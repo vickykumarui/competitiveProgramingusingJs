@@ -140,6 +140,31 @@ class SinglyLinkedList{
 
         return this;
     }
+    
+    findIntersection(l2){
+        let presentVal = {};
+        let firstLLCurrent = this.head;
+        while(firstLLCurrent){
+            if(!presentVal[firstLLCurrent.val]){
+                presentVal[firstLLCurrent.val] = 1;
+            } else{
+                presentVal[firstLLCurrent.val] = presentVal[firstLLCurrent.val] + 1
+            }
+
+            firstLLCurrent = firstLLCurrent.next;
+        }
+
+       let secondLLCurrent = l2.head;
+
+       while(secondLLCurrent){
+           if(presentVal[secondLLCurrent.val]){
+               return secondLLCurrent.val;
+           }
+           secondLLCurrent = secondLLCurrent.next;
+       }
+
+       return null;
+    }
 
     // insert adding a node to specific position n,
 
