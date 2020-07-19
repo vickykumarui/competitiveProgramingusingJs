@@ -130,6 +130,33 @@ iterate till ToDoQueue is empty
 
         return NodeVisited;
     }
+    
+     zigzagTraverse(){
+         let mainStack = [];
+         let subStack = [];
+         mainStack.push(this.root);
+         let pushStrategyRight = true;
+         let finalArr = [];
+         while(mainStack.length){
+
+         while(mainStack.length){    
+            let currNode = mainStack.pop();
+            finalArr.push(currNode.value);
+            if(pushStrategyRight){
+               if(currNode.left) subStack.push(currNode.left);
+               if(currNode.right) subStack.push(currNode.right);
+            } else{
+                if(currNode.right) subStack.push(currNode.right);
+                if(currNode.left) subStack.push(currNode.left);
+            }
+         }
+            pushStrategyRight = !pushStrategyRight;
+            let tempArr = mainStack;
+            mainStack = subStack;
+            subStack = tempArr;
+         }
+         return finalArr;
+     }
 }
 let Mybst = new BinarySearchTree();
 
