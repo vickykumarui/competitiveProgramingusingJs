@@ -1,26 +1,72 @@
-//Linked list consists of node each node has value and pointer to next element
-
-class Node{
-    constructor(value){
-        this.val = value;
-        this.next = null;
-    }
+class Node {
+  constructor(val) {
+    this.data = val;
+    this.next = null;
+  }
 }
 
-class SinglyLinkedList{
-    constructor(){
-        this.head = null;
-        this.tail = null;
-        this.length = 0
-    }
+class LinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
 
-   
+  add(val) {
+    const node = new Node(val);
+
+    if (!this.head) {
+      this.head = node;
+      this.tail = node;
+    } else {
+      this.tail.next = node;
+      this.tail = node;
+    }
+    this.length++;
+  }
+
+  remove(val) {
+    if (!this.head) return;
+    if (this.head.data === val) {
+      this.head = this.head.next;
+      if (!this.head) this.tail = null; 
+      this.length--;
+      return;
+    }
+    let curr = this.head;
+    while (curr.next) {
+      if (curr.next.data === val) {
+        curr.next = curr.next.next;
+        if (!curr.next) this.tail = curr;
+        this.length--;
+        return;
+      }
+      curr = curr.next;
+    }
+  }
+
+  printLL() {
+    let curr = this.head;
+    let out = [];
+    while (curr) {
+      out.push(curr.data);
+      curr = curr.next;
+    }
+    console.log(out.join(" -> "));
+  }
 }
 
 
+const myLL = new LinkedList();
+myLL.add(2);
+myLL.add(3);
+myLL.add(4);
+myLL.add(5);
 
-// var first = new Node('hi');
-// first.next = new Node('there');
-// first.next.next = new Node('how');
-// first.next.next.next = new Node('are');
-// first.next.next.next.next = new Node('you');
+myLL.printLL(); // 2 -> 3 -> 4 -> 5
+myLL.remove(2);
+myLL.printLL(); // 3 -> 4 -> 5
+myLL.remove(5);
+myLL.printLL(); // 3 -> 4
+myLL.remove(10); 
+myLL.printLL(); // 3 -> 4
