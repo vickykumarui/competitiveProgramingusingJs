@@ -1,6 +1,4 @@
-// understanding reference https://codeburst.io/explaining-value-vs-reference-in-javascript-647a975e12a0
-// Assinmnent to object is assigning new reference, change in one object changes other and agian reassignment new object will
-// not change prevItem object as new Assignment is againg assigning new reference
+
 class Node{
     constructor(value){
         this.val = value;
@@ -123,15 +121,7 @@ class SinglyLinkedList{
 
     // set nth item value to val
     set(n,val){
-//         if(n < 0 || n >= this.length){
-//             return null
-//         }
-//         let count = 0;
-//         let current = this.head;
-//         while(count < n){
-//             current = current.next;
-//             count++;
-//         }
+
         let current = this.get(n);
         if(current){
              current.val = val;
@@ -197,14 +187,14 @@ class SinglyLinkedList{
         let tempNode = this.head;
         this.head = this.tail;
         this.tail = this.tempNode;
-        let prev = null; // inititaaly prev will be null as we need to start building from tail
+        let prev = null; 
         let nextNode;
 
         for(let i =0; i < this.length; i++){
-            nextNode = tempNode.next; // keep next node as backup which will become
-            tempNode.next = prev; // update tempNode to ponit its next to its prevItem
-            prev = tempNode; // now current tempNode becomes previous in next iteration
-            tempNode = nextNode; //current nextNode will be tempnode for next iteration
+            nextNode = tempNode.next; 
+            tempNode.next = prev;
+            prev = tempNode;
+            tempNode = nextNode;
         }
         
          return this;      
